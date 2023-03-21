@@ -16,7 +16,6 @@ function BinarySearchTree(value) {
 }
 
 BinarySearchTree.prototype.insert = function (value) {
-   // Asegurarnos de tener un root o raíz
    // si el value es > o < que el root
    // value > root => derecha
    // value < root => izquierda
@@ -52,9 +51,6 @@ BinarySearchTree.prototype.contains = function (value) {
    }
 }
 BinarySearchTree.prototype.size = function () {
-   // Vamos a tener que contar los arboles
-   // Plantearnos caso(s) base
-   // Nuestro unico valor el root(raíz)
    if (this.right === null && this.left === null) return 1;
    // Tiene izquierda y va a la izquierda
    if (this.left !== null && this.right === null) return 1 + this.left.size();
@@ -65,9 +61,6 @@ BinarySearchTree.prototype.size = function () {
 
 }
 BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
-   // 'pre-order' => root - izq - der
-   // 'post-order' => izq - der - root
-   // 'in-order' => izq - root - der   (ÚLTIMO CASO)
    if (order === 'pre-order') {
       // 'pre-order' => root - izq - der
       cb(this.value)
@@ -79,7 +72,7 @@ BinarySearchTree.prototype.depthFirstForEach = function (cb, order) {
       if (this.right !== null) this.right.depthFirstForEach(cb, order)
       cb(this.value)
    } else {
-      // 'in-order' => izq - root - der   (ÚLTIMO CASO)
+      // 'in-order' => izq - root - der   
       if (this.left !== null) this.left.depthFirstForEach(cb, order)
       cb(this.value)
       if (this.right !== null) this.right.depthFirstForEach(cb, order)
